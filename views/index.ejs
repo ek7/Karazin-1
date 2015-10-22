@@ -2,205 +2,364 @@
     <title>KUT - Karazin Univercity Timetable</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="angular.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js" type="text/javascript"></script>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+   <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/1x.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="css/cs-select.css">
     <link rel="stylesheet" type="text/css" href="css/cs-skin-underline.css">
     <link rel="stylesheet" type="text/css" href="css/cs-skin-boxes.css">
-    <script language="JavaScript" type="text/javascript" src="js/jquery.js"></script>
-    <script language="JavaScript" type="text/javascript" src="js/jCal.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/jCal.small.css">
     <link rel="stylesheet" type="text/css" href="css/demo.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <script>
-      $(document).ready(function () {
-                                      			$('#calOne').jCal({
-                                      				day:			new Date(),
-                                      				days:			7,
-                                      				showMonths:		2,
-                                      				forceWeek:		false,	// force full week selection
-                                      				dayOffset:		1,		// start week on Monday
-                                      				dow:			['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'],
-                                      				dCheck:			function (day) {
-                                      						return 'day';
-                                      					},
-                                      				callback:		function (day, days) {
-                                      						//Тут буде зміна розкладу
-                                      						return true;
-                                      					}
-                                      				});
-                                      		});
-    </script>
-    <style>
-</style>
+    <link rel="stylesheet" type="text/css" href="css/timeframe.css">
   </head><body>
+  <script type="text/javascript">
+$(document).ready(function(){ 
+    // Отображается 1 вкладка, 
+    // т.к. отсчёт начинается с нуля
+    $("#myTab2 li:eq(0) a").tab('show');
+});
+</script>
     <header>
       <div class="container" id="title">
         <h1>
-          <img src="img/logo.gif">Karazin University Timetable</h1>
-        
+          <img src="images/logo.gif">Karazin University Timetable</h1>
       </div>
     </header>
     <div class="section">
       <div id="row">
-        <div id="leftColumn" class=" col-md-4 text-center" style="padding-top: 0px;">
-          <ul class="nav nav-tabs">
-            <li class="active">
-              <a href="#">Студенти</a>
-            </li>
-            <li class="">
-              <a href="#">Викладачі</a>
-            </li>
+        <div id="leftColumn" class="col-md-4 text-center" style="padding-top: 0px;">
+          <ul class="nav nav-pills">
+                <li class="active">
+                  <a data-toggle="tab" href="#students">Студенти</a>
+                </li>
+                <li>
+                  <a data-toggle="tab" href="#teachers">Викладачі</a>
+                </li>                
           </ul>
-          <p></p>
-          <p></p>
-          <section>
-            <select class="cs-select cs-skin-boxes">
-              <option value="" disabled="" selected="">Оберіть факультет</option>
-              <option value="#588c75" data-class="f1">біологічний</option>
-              <option value="#b0c47f" data-class="f2">геологічний</option>
-              <option value="#f3e395" data-class="f3">екологічний</option>
-              <option value="#f3ae73" data-class="f4">економічний</option>
-              <option value="#da645a" data-class="f5">іноземних мов</option>
-              <option value="#79a38f" data-class="f6">історичний</option>
-              <option value="#c1d099" data-class="f7">комп'ютерних наук</option>
-              <option value="#f5eaaa" data-class="f8">медичний</option>
-              <option value="#f5be8f" data-class="f9">механіко-математичний</option>
-              <option value="#e1837b" data-class="f10">міжнародних відносин</option>
-              <option value="#9bbaab" data-class="f11">психології</option>
-              <option value="#d1dcb2" data-class="f12">радіофізики</option>
-              <option value="#f9eec0" data-class="f13">соціологічний</option>
-              <option value="#f7cda9" data-class="f14">фізико-енергетичний</option>
-              <option value="#e8a19b" data-class="f15">фізико-технічний</option>
-              <option value="#bdd1c8" data-class="f16">фізичний</option>
-              <option value="#e1e7cd" data-class="f17">філологічний</option>
-              <option value="#faf4d4" data-class="f18">філософський</option>
-              <option value="#fbdfc9" data-class="f19">хімічний</option>
-              <option value="#f1c1bd" data-class="f20">юридичний</option>
-            </select>
-          </section>
-          <section>
-            <select class="cs-select cs-skin-underline">
-              <option value="" disabled="" selected="">курс</option>
-              <option value="1">1 курс</option>
-              <option value="2">2 курс</option>
-              <option value="3">3 курс</option>
-              <option value="4">4 курс</option>
-              <option value="5">5 курс</option>
-            </select>
-          </section>
-          <section>
-            <select class="cs-select cs-skin-underline">
-              <option value="" disabled="" selected="">група</option>
-              <option value="1">ВІ 101</option>
-              <option value="2">ВІ 102</option>
-              <option value="3">ВІ 103</option>
-              <option value="4">ВІ 104</option>
-              <option value="5">ВІ 105</option>
-            </select>
-          </section>
-          <br>
-          <br>
-          <select onchange="$('#calOne').data('days', $('#calOneDays').val());" id="calOneDays" class="form-control col-xs-3 vcenter">
-            <option value="" disabled="" selected="">режим відображення</option>
-            <option value="1">режим відображення: 1 день</option>
-            <option value="2">режим відображення: 2 дні</option>
-            <option value="3">режим відображення: 3 дні</option>
-            <option value="5">режим відображення: 5 днів</option>
-            <option value="7" selected="">режим відображення: 7 днів</option>
-            <option value="10">режим відображення: 10 днів</option>
-            <option value="14">режим відображення: 14 днів</option>
-            <option value="30">режим відображення: 30 днів</option>
-          </select>
-          <br>
-          <table id="ctable">
-            <tbody>
-              <tr></tr>
-              <tr>
-                <td align="center" id="calOne" valign="top" style="padding:10px; background:#264475;">завантаження календаря...</td>
-              </tr>
-              <tr>
-                <td align="center" valign="top" style="padding:10px; background:#264475;" class="vcenter" id="calOneResult"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-8 text-left">
-          <div id="fullcarousel-example" data-interval="false" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <div class="item active">
-                <table class="table">
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Пн</th>
-                      <th>Вт</th>
-                      <th>Ср</th>
-                      <th>Чт</th>
-                      <th>Пт</th>
-                      <th>Сб</th>
-                    </tr>
-                  </thead>
-                </table>
-                <div class="carousel-caption">
-                  <h2>Title</h2>
-                  <p>Description</p>
+          <div class="tab-content">
+		  
+            <div class="tab-pane fade in active" id="students">
+			
+              <p></p>
+              <p></p>
+              
+              <section id="facSection">
+                <select class="cs-select cs-skin-boxes">
+                  <option value="" disabled="" selected="">Оберіть факультет</option>
+                  <option value="#588c75" data-class="f1">біологічний</option>
+                  <option value="#b0c47f" data-class="f2">геологічний</option>
+                  <option value="#f3e395" data-class="f3">екологічний</option>
+                  <option value="#f3ae73" data-class="f4">економічний</option>
+                  <option value="#da645a" data-class="f5">іноземних мов</option>
+                  <option value="#79a38f" data-class="f6">історичний</option>
+                  <option value="#c1d099" data-class="f7">комп'ютерних наук</option>
+                  <option value="#f5eaaa" data-class="f8">медичний</option>
+                  <option value="#f5be8f" data-class="f9">механіко-математичний</option>
+                  <option value="#e1837b" data-class="f10">міжнародних відносин</option>
+                  <option value="#9bbaab" data-class="f11">психології</option>
+                  <option value="#d1dcb2" data-class="f12">радіофізики</option>
+                  <option value="#f9eec0" data-class="f13">соціологічний</option>
+                  <option value="#f7cda9" data-class="f14">фізико-енергетичний</option>
+                  <option value="#e8a19b" data-class="f15">фізико-технічний</option>
+                  <option value="#bdd1c8" data-class="f16">фізичний</option>
+                  <option value="#e1e7cd" data-class="f17">філологічний</option>
+                  <option value="#faf4d4" data-class="f18">філософський</option>
+                  <option value="#fbdfc9" data-class="f19">хімічний</option>
+                  <option value="#f1c1bd" data-class="f20">юридичний</option>
+                </select>
+              </section>
+              <section id="courseSection">
+                <select class="cs-select cs-skin-underline">
+                  <option value="" disabled="" selected="">курс</option>
+                  <option value="1">1 курс</option>
+                  <option value="2">2 курс</option>
+                  <option value="3">3 курс</option>
+                  <option value="4">4 курс</option>
+                  <option value="5">5 курс</option>
+                </select>
+              </section>
+              <section>
+                <select class="cs-select cs-skin-underline">
+                  <option value="" disabled="" selected="">група</option>
+                  <option value="1">ВІ 101</option>
+                  <option value="2">ВІ 102</option>
+                  <option value="3">ВІ 103</option>
+                  <option value="4">ВІ 104</option>
+                  <option value="5">ВІ 105</option>
+                </select>
+              </section>
+              <br>
+              <div id="example" class="vcenter">
+                <h5>намалюйте потрібний період в календарі
+                  <i class="fa fa-chevron-down fa-fw fa-lg"></i>
+                </h5>
+                <div id="calendars"></div>
+                <div id="calendar_form">
+                  <div id="labels">
+                    <h5>або введіть тут (
+                      <a href="#" onclick="return false;" id="reset">скинути <i class="fa fa-fw fa-lg fa-close"></i></a>)</h5>
+                  </div>
+                  <div id="fields">
+                    <span>
+                      <input type="text" name="start" value="" id="start">–
+                      <input type="text" name="end" value="" id="end">
+                    </span>
+                  </div>
                 </div>
               </div>
+              <script type="text/javascript" charset="utf-8" src="js/prototype.js"></script>
+              <script type="text/javascript" charset="utf-8" src="js/timeframe.js"></script>
+              <script type="text/javascript" charset="utf-8">
+                //<![CDATA[
+                                                                        new Timeframe('calendars', {
+                                                                          startField: 'start',
+                                                                          endField: 'end',
+                                                                          weekOffset: 1,
+                                                                          resetButton: 'reset' });
+                                                                      //]]>
+              </script>
+              <br>
             </div>
-            <a class="left carousel-control" href="#fullcarousel-example" data-slide="prev"><i class="icon-prev fa fa-angle-left"></i></a>
-            <a class="right carousel-control" href="#fullcarousel-example" data-slide="next"><i class="icon-next fa fa-angle-right"></i></a>
+            <div id="teachers" class="tab-pane fade">
+              <h3>Menu 2</h3>
+              <p>Some content in menu 2.</p>
+            </div>
           </div>
-          <h1>This is your timetable</h1>
-          <p></p>
-          <p>Enjoy it!</p>
-          <p></p>
         </div>
+      
+      <div class="col-xs-12 col-sm-6 col-md-8 text-left">
+        <div id="fullcarousel-example" data-interval="false" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="item" id="previous">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Пн</th>
+                    <th>Вт</th>
+                    <th>Ср</th>
+                    <th>Чт</th>
+                    <th>Пт</th>
+                    <th>Сб</th>
+                    <th>Нд</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="item active" id="current">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Пн</th>
+                    <th>Вт</th>
+                    <th>Ср</th>
+                    <th>Чт</th>
+                    <th>Пт</th>
+                    <th>Сб</th>
+                    <th>Нд</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="item" id="next">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Пн</th>
+                    <th>Вт</th>
+                    <th>Ср</th>
+                    <th>Чт</th>
+                    <th>Пт</th>
+                    <th>Сб</th>
+                    <th>Нд</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+          <a class="left carousel-control" href="#fullcarousel-example" data-slide="prev"><i class="icon-prev fa fa-angle-left"></i></a>
+          <a class="right carousel-control" href="#fullcarousel-example" data-slide="next"><i class="fa fa-angle-right fa-lg icon-next"></i></a>
+        </div>
+        <p></p>
+        <p></p>
       </div>
-      <script src="js/classie.js"></script>
-      <script src="js/selectFx.js"></script>
-      <script>
-        (function() {
-                                          				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
-                                          					new SelectFx(el);
-                                          				} );
-                                          			})();
-      </script>
     </div>
+    <script src="js/classie.js"></script>
+    <script src="js/selectFx.js"></script>
+    <script>
+      (function() {
+                                                                                  				[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {	
+                                                                                  					new SelectFx(el);
+                                                                                  				} );
+                                                                                  			})();
+    </script>
   
 
 </body></html>
