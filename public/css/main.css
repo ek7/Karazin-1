@@ -1,4 +1,5 @@
 div .col-md-8 {background: url('../images/blue.jpg')}
+body::after{height:0px;}
 .nav-tabs {font-size:1.4em;color:white;}
  div .col-md-4, .col-md-8{
  margin-top: -25px;
